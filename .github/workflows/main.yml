@@ -7,7 +7,7 @@ jobs:
     steps:
       - name: Hello world action step
         id: hello
-        uses: marekpijak/github_actions_sms@v1.1
+        uses: marekpijak/github_actions_sms
         with:
           who-to-greet: 'Marek'
       # Use the output from the `hello` step
