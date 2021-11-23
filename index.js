@@ -4,13 +4,13 @@ const github = require('@actions/github');
 try {
     // `who-to-greet` input defined in action metadata file
     const url = core.getInput('url');
-    //const method = core.getInput('method');
-    //const contentType = core.getInput('contentType');
-    //const application_id = core.getInput('data');
+    const method = core.getInput('method');
+    const contentType = core.getInput('contentType');
+    const input_data = core.getInput('data');
 
 
     console.log(`URL ${url}!`);
-    console.log("here");
+    console.log(input_data);
     //console.log(`Hello ${application_token}!`);
     //console.log(`Hello ${contentType}!`);
 
