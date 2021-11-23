@@ -9,6 +9,10 @@ inputs:
     description: 'http method'
     required: true
     default: 'POST'
+  contentType:
+    description: 'contentType'
+    required: true
+    default: 'application/json'
   data:
     description: 'input json data'
     required: true
