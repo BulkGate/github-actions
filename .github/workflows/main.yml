@@ -7,7 +7,7 @@ jobs:
     steps:
       - name: Send SMS after push
         id: SendSMS
-        uses: BulkGate/github_actions_sms@main
+        uses: BulkGate/github_actions_sms@HEAD
         with:
           url: 'https://portal.bulkgate.com/api/1.0/simple/transactional'
           method: 'POST'
