@@ -10,9 +10,6 @@ try {
 
 
     console.log(`Hello ${url}!`);
-    console.log(`Hello ${method}!`);
-    console.log(`Hello ${contentType}!`);
-    console.log(`Hello ${application_id}!`);
     //console.log(`Hello ${application_token}!`);
     //console.log(`Hello ${contentType}!`);
 
