@@ -1,13 +1,21 @@
 name: 'Hello World'
 description: 'Greet someone and record the time'
 inputs:
-  who-to-greet:  # id of input
-    description: 'Who to greet'
+  url:  # id of input
+    description: 'url'
     required: true
-    default: 'World'
+    default: 'https://portal.bulkgate.com/api/1.0/simple/transactional'
+  method:
+    description: 'http method'
+    required: true
+    default: 'POST'
+  data:
+    description: 'input json data'
+    required: true
+    default: '{}'
 outputs:
-  time: # id of output
-    description: 'The time we greeted you'
+  response: # response of http request
+    description: 'Response of http request'
 runs:
   using: 'node12'
   main: 'dist/index.js'
