@@ -17,5 +17,5 @@ jobs:
             "application_token": "test"
           }'
       # Use the output from the `SendSMS` step
-      - name: Get the output time
-        run: echo "The time was ${{ steps.SendSMS.outputs.response }}"
+      - name: Get http response
+        run: echo "Response is ${{ steps.SendSMS.outputs.response }}"

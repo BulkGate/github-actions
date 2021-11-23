@@ -9,7 +9,7 @@ try {
     const application_id = core.getInput('data');
 
 
-    console.log(`Hello ${url}!`);
+    console.log(`Hi Hello ${url}!`);
     //console.log(`Hello ${application_token}!`);
     //console.log(`Hello ${contentType}!`);
 
