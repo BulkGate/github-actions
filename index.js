@@ -11,6 +11,7 @@ try {
 
     console.log(`URL ${url}!`);
     console.log(input_data);
+    console.log('here');
     //console.log(`Hello ${application_token}!`);
     //console.log(`Hello ${contentType}!`);
 
