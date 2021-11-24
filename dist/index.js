@@ -8458,7 +8458,9 @@ try {
     const options = {
         hostname: 'portal.bulkgate.com',
         path: '/api/1.0/simple/transactional',
-        method: 'POST'
+        method: 'POST',
+        data: "{'application_id': '1123', 'application_token': '123'}"
+
     };
 
     const req = https.request(options, (res) => {
