@@ -1,6 +1,6 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
-const http = require('https');
+const https = require('https');
 
 try {
     const url = core.getInput('url');
@@ -11,24 +11,36 @@ try {
 
     console.log(`URL ${url}!`);
 
+    const data = JSON.stringify({
+        application_id: "123",
+        application_token: "token",
+        number: "420777777777",
+        text: "text"
+    })
+
     const options = {
         hostname: 'portal.bulkgate.com',
-        path: url,
-        method: 'POST'
+        path: '/api/1.0/simple/transactional',
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Content-Length': data.length
+        }
     };
 
     const req = https.request(options, (res) => {
         console.log('statusCode:', res.statusCode);
-        console.log('headers:', res.headers);
+
 
         res.on('data', (d) => {
-            console.error(d);
+            console.log('Response data:', JSON.parse(d));
         });
     });
 
     req.on('error', (e) => {
-        console.error(e);
+        console.log('ErrorMessage:', e);
     });
+    req.write(data)
     req.end();
 
 
