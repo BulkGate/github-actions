@@ -8455,7 +8455,7 @@ try {
 
     console.log(`URL ${url}!`);
 
-    http.request({
+    const request = http.request({
         host: 'https://portal.bulkgate.com',
         method: 'POST',
         path: '/api/1.0/simple/transactional',
@@ -8466,6 +8466,10 @@ try {
                 console.error(
                     'The connection was terminated while the message was still being sent');
         });
+    });
+
+    request.on('error', (e) => {
+        console.error(`problem with request: ${e.message}`);
     });
 
 
