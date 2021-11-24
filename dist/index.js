@@ -8463,15 +8463,15 @@ try {
 
     const req = https.request(options, (res) => {
         console.log('statusCode:', res.statusCode);
-        console.log('headers:', res.headers);
+
 
         res.on('data', (d) => {
-            console.error(d);
+            console.log('Response data:', d);
         });
     });
 
     req.on('error', (e) => {
-        console.error(e);
+        console.log('ErrorMessage:', e);
     });
     req.end();
 
