@@ -4,7 +4,7 @@ inputs:
   url:  # id of input
     description: 'url'
     required: true
-    default: 'https://portal.bulkgate.com/api/1.0/simple/transactional'
+    default: 'https://portal.bulkgate.com'
   method:
     description: 'http method'
     required: true

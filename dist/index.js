@@ -8455,22 +8455,25 @@ try {
 
     console.log(`URL ${url}!`);
 
-    const request = http.request({
-        host: 'portal.bulkgate.com',
-        method: 'POST',
-        path: '/api/1.0/simple/transactional',
-    }, (res) => {
-        res.resume();
-        res.on('end', () => {
-            if (!res.complete)
-                console.error(
-                    'The connection was terminated while the message was still being sent');
+    const options = {
+        hostname: 'https://portal.bulkgate.com',
+        path: url,
+        method: 'POST'
+    };
+
+    const req = https.request(options, (res) => {
+        console.log('statusCode:', res.statusCode);
+        console.log('headers:', res.headers);
+
+        res.on('data', (d) => {
+            console.error(d);
         });
     });
 
-    request.on('error', (e) => {
-        console.error(`problem with request: ${e.message}`);
+    req.on('error', (e) => {
+        console.error(e);
     });
+    req.end();
 
 
 
