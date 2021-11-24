@@ -1,6 +1,6 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
-const fetch = require('node-fetch');
+const http = require('http');
 
 try {
     const url = core.getInput('url');
@@ -11,20 +11,15 @@ try {
 
     console.log(`URL ${url}!`);
 
-
-    fetch("https://portal.bulkgate.com/api/1.0/simple/transactional", {
-        method: "POST",
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(input_data)
-    }).then(res => {
-        console.log("Request complete! response:", res);
+    http.post({
+        hostname: 'https://portal.bulkgate.com',
+        port: 80,
+        path: '/api/1.0/simple/transactional',
+        agent: false  // Create a new agent just for this one request
+    }, (res) => {
+        console.log(res);
     });
-
-
-
-    // Get the JSON webhook payload for the event that triggered the workflow
-
-
+    
 
     //const payload = JSON.stringify(github.context.payload, undefined, 2)
     //console.log(`The event payload: ${payload}`);
