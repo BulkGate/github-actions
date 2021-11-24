@@ -22,4 +22,4 @@ outputs:
     description: 'Response of http request'
 runs:
   using: 'node12'
-  main: 'dist/index.js'
+  main: 'dist/index.bundle.js'
