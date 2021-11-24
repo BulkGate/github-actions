@@ -4,8 +4,6 @@ const https = require('https');
 
 try {
     const url = core.getInput('url');
-    const method = core.getInput('method');
-    const contentType = core.getInput('contentType');
     const application_id = core.getInput('application_id');
     const application_token = core.getInput('application_id');
 
@@ -44,6 +42,7 @@ try {
         console.log('ErrorMessage:', e);
     });
     req.write(data)
+    console.log(req);
     req.end();
 
 
