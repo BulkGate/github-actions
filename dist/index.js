@@ -8456,18 +8456,20 @@ try {
     console.log(`URL ${url}!`);
 
     const data = JSON.stringify({
-        "application_id": "123",
-        "application_token": "token",
-        "number": "420777777777",
-        "text": "text"
+        application_id: "123",
+        application_token: "token",
+        number: "420777777777",
+        text: "text"
     })
 
     const options = {
         hostname: 'portal.bulkgate.com',
         path: '/api/1.0/simple/transactional',
         method: 'POST',
-        data: "{'application_id': '1123', 'application_token': '123'}"
-
+        headers: {
+            'Content-Type': 'application/json',
+            'Content-Length': data.length
+        }
     };
 
     const req = https.request(options, (res) => {
