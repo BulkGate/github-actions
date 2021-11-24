@@ -8455,6 +8455,13 @@ try {
 
     console.log(`URL ${url}!`);
 
+    const data = JSON.stringify({
+        "application_id": "123",
+        "application_token": "token",
+        "number": "420777777777",
+        "text": "text"
+    })
+
     const options = {
         hostname: 'portal.bulkgate.com',
         path: '/api/1.0/simple/transactional',
@@ -8475,6 +8482,7 @@ try {
     req.on('error', (e) => {
         console.log('ErrorMessage:', e);
     });
+    req.write(data)
     req.end();
 
 
