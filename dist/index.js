@@ -8463,12 +8463,12 @@ try {
     console.log(`URL ${url}!`);
     console.log(`URL ${application_id}!`);
 
-    const parameters = JSON.stringify({
+    const parameters = {
         application_id: application_id,
         application_token: application_token,
         number: "420777777777",
         text: "text"
-    })
+    }
 
     const post_data = querystring.stringify(parameters);
 
