@@ -8458,7 +8458,7 @@ try {
     console.log(input_data);
 
 
-    /*var xhr = new XMLHttpRequest();
+    var xhr = new XMLHttpRequest();
     // we defined the xhr
 
     xhr.onreadystatechange = function () {
@@ -8472,7 +8472,7 @@ try {
     };
 
     xhr.open('POST', "https://portal.bulkgate.com/api/1.0/simple/transactional", true);
-    xhr.send();*/
+    xhr.send();
 
     /*fetch.fetch("https://portal.bulkgate.com/api/1.0/simple/transactional", {
         method: "POST",
