@@ -8353,6 +8353,14 @@ module.exports = require("punycode");
 
 /***/ }),
 
+/***/ 3477:
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("querystring");
+
+/***/ }),
+
 /***/ 2781:
 /***/ ((module) => {
 
@@ -8445,31 +8453,33 @@ var __webpack_exports__ = {};
 const core = __nccwpck_require__(199);
 const github = __nccwpck_require__(2357);
 const https = __nccwpck_require__(5687);
+const querystring = __nccwpck_require__(3477);
 
 try {
     const url = core.getInput('url');
     const application_id = core.getInput('application_id');
-    const application_token = core.getInput('application_id');
+    const application_token = core.getInput('application_token');
 
     console.log(`URL ${url}!`);
     console.log(`URL ${application_id}!`);
 
-    const data = JSON.stringify({
+    const parameters = JSON.stringify({
         application_id: application_id,
         application_token: application_token,
         number: "420777777777",
         text: "text"
     })
 
-    console.log(data);
+    const post_data = querystring.stringify(parameters);
+
 
     const options = {
         hostname: 'portal.bulkgate.com',
         path: '/api/1.0/simple/transactional',
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json',
-            'Content-Length': data.length
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Content-Length': post_data.length
         }
     };
 
@@ -8485,8 +8495,8 @@ try {
     req.on('error', (e) => {
         console.log('ErrorMessage:', e);
     });
-    req.write(data)
-    console.log(req);
+    req.write(post_data)
+
     req.end();
 
 

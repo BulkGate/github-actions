@@ -1,31 +1,33 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
 const https = require('https');
+const querystring = require('querystring');
 
 try {
     const url = core.getInput('url');
     const application_id = core.getInput('application_id');
-    const application_token = core.getInput('application_id');
+    const application_token = core.getInput('application_token');
 
     console.log(`URL ${url}!`);
     console.log(`URL ${application_id}!`);
 
-    const data = JSON.stringify({
+    const parameters = JSON.stringify({
         application_id: application_id,
         application_token: application_token,
         number: "420777777777",
         text: "text"
     })
 
-    console.log(data);
+    const post_data = querystring.stringify(parameters);
+
 
     const options = {
         hostname: 'portal.bulkgate.com',
         path: '/api/1.0/simple/transactional',
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json',
-            'Content-Length': data.length
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Content-Length': post_data.length
         }
     };
 
@@ -41,8 +43,8 @@ try {
     req.on('error', (e) => {
         console.log('ErrorMessage:', e);
     });
-    req.write(data)
-    console.log(req);
+    req.write(post_data)
+
     req.end();
 
 
