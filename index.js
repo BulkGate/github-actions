@@ -19,6 +19,8 @@ try {
         text: "text"
     })
 
+    console.log(data);
+
     const options = {
         hostname: 'portal.bulkgate.com',
         path: '/api/1.0/simple/transactional',
