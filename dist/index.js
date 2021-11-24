@@ -8456,7 +8456,7 @@ try {
     console.log(`URL ${url}!`);
 
     const options = {
-        hostname: 'https://portal.bulkgate.com',
+        hostname: 'portal.bulkgate.com',
         path: '/api/1.0/simple/transactional',
         method: 'POST'
     };
