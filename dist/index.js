@@ -8444,7 +8444,7 @@ var __webpack_exports__ = {};
 (() => {
 const core = __nccwpck_require__(199);
 const github = __nccwpck_require__(2357);
-const http = __nccwpck_require__(3685);
+const http = __nccwpck_require__(5687);
 
 try {
     const url = core.getInput('url');
@@ -8456,7 +8456,7 @@ try {
     console.log(`URL ${url}!`);
 
     const request = http.request({
-        host: 'https://portal.bulkgate.com',
+        host: 'portal.bulkgate.com',
         method: 'POST',
         path: '/api/1.0/simple/transactional',
     }, (res) => {
