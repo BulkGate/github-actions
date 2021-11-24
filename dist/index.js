@@ -8456,8 +8456,9 @@ try {
     console.log(`URL ${url}!`);
 
     http.request({
-        host: 'https://portal.bulkgate.com/api/1.0/simple/transactional',
-        method: 'POST'
+        host: 'https://portal.bulkgate.com',
+        method: 'POST',
+        path: '/api/1.0/simple/transactional',
     }, (res) => {
         res.resume();
         res.on('end', () => {
