@@ -3,7 +3,6 @@ const github = require('@actions/github');
 const fetch = require('node-fetch');
 
 try {
-    // `who-to-greet` input defined in action metadata file
     const url = core.getInput('url');
     const method = core.getInput('method');
     const contentType = core.getInput('contentType');
@@ -21,7 +20,7 @@ try {
     }).then(res => {
         console.log("Request complete! response:", res);
     });
-    
+
 
 
     // Get the JSON webhook payload for the event that triggered the workflow
