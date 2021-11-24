@@ -6,7 +6,7 @@ try {
     const url = core.getInput('url');
     const method = core.getInput('method');
     const contentType = core.getInput('contentType');
-    const input_data = core.getInput('data');
+    const input_data = JSON.parse(core.getInput('data'));
 
 
     console.log(`URL ${url}!`);
@@ -15,7 +15,7 @@ try {
     //console.log(`Hello ${application_token}!`);
     //console.log(`Hello ${contentType}!`);
 
-    /*var xhr = new XMLHttpRequest();
+    var xhr = new XMLHttpRequest();
     xhr.open(method, url, true);
     xhr.setRequestHeader('Content-Type', contentType);
     xhr.send(JSON.stringify({
@@ -27,7 +27,7 @@ try {
         var data = JSON.parse(this.responseText);
         console.log(data);
         core.setOutput("response", data);
-    };*/
+    };
 
     // Get the JSON webhook payload for the event that triggered the workflow
 
