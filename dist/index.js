@@ -8466,7 +8466,7 @@ try {
 
 
         res.on('data', (d) => {
-            console.log('Response data:', d);
+            console.log('Response data:', JSON.parse(d));
         });
     });
 
