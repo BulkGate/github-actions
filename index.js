@@ -10,7 +10,6 @@ try {
 
 
     console.log(`URL ${url}!`);
-    console.log(input_data);
 
 
     fetch("https://portal.bulkgate.com/api/1.0/simple/transactional", {
