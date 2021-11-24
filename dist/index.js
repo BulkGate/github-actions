@@ -15265,16 +15265,32 @@ try {
 
     console.log(`URL ${url}!`);
     console.log(input_data);
-    console.log('here');
 
 
-    fetch.fetch("https://portal.bulkgate.com/api/1.0/simple/transactional", {
+    var xhr = new XMLHttpRequest();
+    // we defined the xhr
+
+    xhr.onreadystatechange = function () {
+
+        if (this.status === 200)
+        {
+            var data = JSON.parse(this.responseText);
+
+            console.log(data);
+        }
+
+    };
+
+    xhr.open('POST', "https://portal.bulkgate.com/api/1.0/simple/transactional", true);
+    xhr.send();
+
+    /*fetch.fetch("https://portal.bulkgate.com/api/1.0/simple/transactional", {
         method: "POST",
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(input_data)
     }).then(res => {
         console.log("Request complete! response:", res);
-    });
+    });*/
 
 
     // Get the JSON webhook payload for the event that triggered the workflow
