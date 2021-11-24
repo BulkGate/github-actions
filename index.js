@@ -1,6 +1,6 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
-//const fetch = require('node-fetch');
+const fetch = require('xhr2');
 
 try {
     // `who-to-greet` input defined in action metadata file
