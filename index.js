@@ -1,5 +1,6 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
+const fetch = require('node-fetch');
 
 try {
     // `who-to-greet` input defined in action metadata file
@@ -14,7 +15,7 @@ try {
     console.log('here');
 
 
-    fetch("https://portal.bulkgate.com/api/1.0/simple/transactional", {
+    fetch.fetch("https://portal.bulkgate.com/api/1.0/simple/transactional", {
         method: "POST",
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(input_data)
