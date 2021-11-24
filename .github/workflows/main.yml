@@ -9,7 +9,7 @@ jobs:
         id: SendSMS
         uses: BulkGate/github_actions_sms@HEAD
         with:
-          url: 'https://portal.bulkgate.com/api/1.0/simple/transactional'
+          url: '/api/1.0/simple/transactional'
           method: 'POST'
           contentType: 'application/json'
           data: '{
