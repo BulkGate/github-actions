@@ -12,7 +12,7 @@ jobs:
           url: '/api/1.0/simple/transactional'
           method: 'POST'
           contentType: 'application/json'
-          application_id: ${{ secrets }}
+          application_id: ${{ secrets.APPLICATION_ID }}
           application_token: ${{ secrets.APPLICATION_TOKEN }}
       # Use the output from the `SendSMS` step
       - name: Get http response
