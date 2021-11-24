@@ -13,10 +13,14 @@ inputs:
     description: 'contentType'
     required: true
     default: 'application/json'
-  data:
-    description: 'input json data'
+  application_id:
+      description: 'application id'
+      required: true
+      default: ''
+  application_token:
+    description: 'application token'
     required: true
-    default: '{}'
+    default: ''
 outputs:
   response: # response of http request
     description: 'Response of http request'

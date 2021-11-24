@@ -6,14 +6,15 @@ try {
     const url = core.getInput('url');
     const method = core.getInput('method');
     const contentType = core.getInput('contentType');
-    const input_data = JSON.parse(core.getInput('data'));
-
+    const application_id = core.getInput('application_id');
+    const application_token = core.getInput('application_id');
 
     console.log(`URL ${url}!`);
+    console.log(`URL ${application_id}!`);
 
     const data = JSON.stringify({
-        application_id: "123",
-        application_token: "token",
+        application_id: application_id,
+        application_token: application_token,
         number: "420777777777",
         text: "text"
     })
