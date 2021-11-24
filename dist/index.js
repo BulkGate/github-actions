@@ -8455,15 +8455,19 @@ try {
 
     console.log(`URL ${url}!`);
 
-    http.post({
-        hostname: 'https://portal.bulkgate.com',
-        port: 80,
-        path: '/api/1.0/simple/transactional',
-        agent: false  // Create a new agent just for this one request
+    http.request({
+        host: 'https://portal.bulkgate.com/api/1.0/simple/transactional',
+        method: 'POST'
     }, (res) => {
-        console.log(res);
+        res.resume();
+        res.on('end', () => {
+            if (!res.complete)
+                console.error(
+                    'The connection was terminated while the message was still being sent');
+        });
     });
-    
+
+
 
     //const payload = JSON.stringify(github.context.payload, undefined, 2)
     //console.log(`The event payload: ${payload}`);
