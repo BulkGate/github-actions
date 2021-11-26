@@ -9,9 +9,11 @@ jobs:
         id: SendSMS
         uses: BulkGate/github_actions_sms@HEAD
         with:
-          url: '/api/1.0/simple/transactional'
           application_id: ${{ secrets.application_id }}
           application_token: ${{ secrets.application_token }}
+          number: '420777777777'
+          text: 'test'
+
       # Use the output from the `SendSMS` step
       - name: Get http response
         run: echo "Response is ${{ steps.SendSMS.outputs.response }}"

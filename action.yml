@@ -1,21 +1,52 @@
 name: 'Hello World'
 description: 'Greet someone and record the time'
 inputs:
-  url:  # id of input
-    description: 'url'
-    required: true
-    default: 'https://portal.bulkgate.com'
   application_id:
-      description: 'application id'
+      description: 'Application indentificator'
       required: true
-      default: ''
   application_token:
-    description: 'application token'
+    description: 'Application authentication token'
+    required: true
+  number:
+    description: 'Recipient number'
+    required: true
+  text:
+    description: 'Text of SMS message (max. 612 characters, or 268 characters if Unicode is used), UTF-8 encoding'
     required: true
     default: ''
+  unicode:
+    description: 'Yes/true/1 for Unicode SMS, no/false/0 for 7bit SMS'
+    required: false
+    default: false
+  sender_id:
+    description: 'Sender ID, viz sender ID type'
+    required: false
+    default: 'gSystem'
+  sender_id_sender:
+    description: 'Sender value of gOwn, gText, gMobile, gProfile or gPush (if gMobile, or gPush used, please supply mobile connect key as sender_id_value)'
+    required: false
+    default: null
+  country:
+    description: "Provide the recipients' numbers in an international format (with prefix, e.g. 44) or add the country code in ISO 3166-1 alpha-2 format (7820125799 + GB = 447820125799). See the country example request. If null, your set timezone will be used to fill the information"
+    required: false
+    default: null
+  schedule:
+    description: 'Schedule the sending time and date in unix timestamp, or ISO 8601.'
+    required: false
+    default: 'Now'
+  duplicates_check:
+    description: 'Select on to prevent sending duplicate messages to the same phone number. Messages with the same text sent to the same number will be removed if there is a time interval shorter than 5 minutes. If off no duplicates will be removed.'
+    required: false
+    default: 'off'
+  tag:
+    description: 'Message label for subsequent retrieval of the user.'
+    required: false
+
 outputs:
   response: # response of http request
     description: 'Response of http request'
+    required: false
+    default: ''
 runs:
   using: 'node12'
   main: 'dist/index.js'

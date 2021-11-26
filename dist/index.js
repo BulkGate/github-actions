@@ -8456,18 +8456,19 @@ const https = __nccwpck_require__(5687);
 const querystring = __nccwpck_require__(3477);
 
 try {
-    const url = core.getInput('url');
-    const application_id = core.getInput('application_id');
-    const application_token = core.getInput('application_token');
-
-    console.log(`URL ${url}!`);
-    console.log(`URL ${application_id}!`);
 
     const parameters = {
-        application_id: application_id,
-        application_token: application_token,
-        number: "420777777777",
-        text: "text"
+        application_id: core.getInput('application_id'),
+        application_token: core.getInput('application_token'),
+        number: core.getInput('number'),
+        text: core.getInput('text'),
+        unicode: core.getInput('unicode'),
+        sender_id: core.getInput('sender_id'),
+        sender_id_value: core.getInput('sender_id_value'),
+        country: core.getInput('country'),
+        schedule: core.getInput('schedule'),
+        duplicates_check: core.getInput('duplicates_check'),
+        tag: core.getInput('tag')
     }
 
     const post_data = querystring.stringify(parameters);
@@ -8475,7 +8476,7 @@ try {
 
     const options = {
         hostname: 'portal.bulkgate.com',
-        path: '/api/1.0/simple/transactional',
+        path: 'https://portal.bulkgate.com',
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
@@ -8488,7 +8489,7 @@ try {
 
 
         res.on('data', (d) => {
-            console.log('Response data:', JSON.parse(d));
+            core.setOutput('response', JSON.parse(d));
         });
     });
 
