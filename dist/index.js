@@ -8489,6 +8489,7 @@ try {
 
 
         res.on('data', (d) => {
+            console.log(JSON.parse(d))
             core.setOutput('response', JSON.parse(d));
         });
     });
