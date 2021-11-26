@@ -41,12 +41,10 @@ inputs:
   tag:
     description: 'Message label for subsequent retrieval of the user.'
     required: false
-
+    default: ''
 outputs:
   response: # response of http request
     description: 'Response of http request'
-    required: false
-    default: ''
 runs:
   using: 'node12'
   main: 'dist/index.js'
