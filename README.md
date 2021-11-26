@@ -2,6 +2,23 @@
 
 Send SMS via Github actions
 
+## Workflow
+
+- Go to your repository settings. Click secrets and set your application_id and application_token as secrets
+
+- Set inputs in your workflow
+
+```
+with:
+  application_id: ${{ secrets.application_id }}
+  application_token: ${{ secrets.application_token }}
+  number: '420777777777'
+  text: 'test'
+  sender_id: 'gText'
+  sender_id_value: 'Github test'
+```
+
+
 ## Inputs
 
 | PARAMETER NAME | VALUE | MANDATORY | DEFAULT VALUE |
