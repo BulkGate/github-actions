@@ -42,7 +42,6 @@ try {
     req.write(post_data)
 
     req.end();
-    return JSON.parse(d);
 } catch (error) {
     core.setFailed(error.message);
 }
