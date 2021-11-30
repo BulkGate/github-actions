@@ -8456,7 +8456,6 @@ const https = __nccwpck_require__(5687);
 const querystring = __nccwpck_require__(3477);
 
 try {
-
     const parameters = {
         application_id: core.getInput('application_id'),
         application_token: core.getInput('application_token'),
@@ -8473,8 +8472,6 @@ try {
 
     const post_data = querystring.stringify(parameters);
 
-    console.log(parameters);
-
     const options = {
         hostname: 'portal.bulkgate.com',
         path: '/api/1.0/simple/transactional',
@@ -8486,11 +8483,7 @@ try {
     };
 
     const req = https.request(options, (res) => {
-        console.log('statusCode:', res.statusCode);
-
-
         res.on('data', (d) => {
-            console.log(JSON.parse(d))
             core.setOutput('response', JSON.parse(d));
         });
     });
@@ -8501,13 +8494,7 @@ try {
     req.write(post_data)
 
     req.end();
-
-
-
-    //const payload = JSON.stringify(github.context.payload, undefined, 2)
-    //console.log(`The event payload: ${payload}`);
-
-
+    return JSON.parse(d);
 } catch (error) {
     core.setFailed(error.message);
 }
