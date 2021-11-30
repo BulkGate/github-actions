@@ -24,7 +24,7 @@ try {
 
     const options = {
         hostname: 'portal.bulkgate.com',
-        path: '/api/1.0/simple/transactional',
+        path: '/api/2.0/advanced/transactional',
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
