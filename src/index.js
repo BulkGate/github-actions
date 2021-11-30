@@ -11,7 +11,7 @@ try {
         text: core.getInput('text'),
         unicode: core.getInput('unicode'),
         sender_id: core.getInput('sender_id'),
-        sender_id_value: core.getInput('sender_id_value'),
+        sender_id_value: core.getInput('sender_id_sender'),
         country: core.getInput('country'),
         schedule: core.getInput('schedule'),
         duplicates_check: core.getInput('duplicates_check'),
