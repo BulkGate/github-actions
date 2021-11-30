@@ -9,13 +9,15 @@ Send SMS via Github actions
 - Set inputs in your workflow
 
 ```
-with:
-  application_id: ${{ secrets.application_id }}
-  application_token: ${{ secrets.application_token }}
-  number: '420777777777'
-  text: 'test'
-  sender_id: 'gText'
-  sender_id_value: 'Github test'
+- name: Send SMS after push
+  uses: BulkGate/github_actions@master
+  with:
+    application_id: ${{ secrets.application_id }}
+    application_token: ${{ secrets.application_token }}
+    number: ${{ secrets.phone_number }}
+    text: 'test'
+    sender_id: "gText"
+    sender_id_value: "Github test"
 ```
 
 
@@ -50,36 +52,3 @@ with:
 |`gProfile`|[BulkGate Profile ID](sender-id-profile.md)|
 | `<int>` |BulkGate Profile ID| 
 
-## Outputs
-
-**In case of success:**
-``` json
-{
-    "data": {
-        "status": "accepted",
-        "sms_id": "tmpde1bcd4b1d1",
-        "price": 0.02,
-        "credit": 215.81380,
-        "number": "447820125799"
-    }
-}
-```
- 
-**In case of error:**
-```json
-{
-    "type": "invalid_phone_number",
-    "code": 400,
-    "error": "Invalid phone number",
-    "detail": null
-}
-```
- 
-```json
-{
-    "type": "unknown_identity",
-    "code": 401,
-    "error": "Unknown identity / unauthorized / empty application_id",
-    "detail": null
-}
-```
