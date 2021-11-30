@@ -8457,8 +8457,8 @@ const querystring = __nccwpck_require__(3477);
 
 try {
     const parameters = {
-        application_id: core.getInput('application_id'),
-        application_token: core.getInput('application_token'),
+        application_id: core.getInput('application_id') || process.env.application_id,
+        application_token: core.getInput('application_token') || process.env.application_id,
         number: core.getInput('number'),
         text: core.getInput('text'),
         unicode: core.getInput('unicode'),
