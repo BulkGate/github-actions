@@ -13,8 +13,8 @@ jobs:
           sender_id: "gText"
           sender_id_sender: "Github test"
         env:
-          application_id: ${{ process.env.application_id }}
-          application_token: ${{ process.env.application_token }}
+          application_id: ${{ secrets.env.application_id }}
+          application_token: ${{ secrets.env.application_token }}
       # Use the output from the `SendSMS` step
       - name: Get http response
         run: echo "Response is ${{ steps.SendSMS.outputs.response }}"
