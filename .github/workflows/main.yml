@@ -6,7 +6,7 @@ jobs:
     name: Send SMS after push
     steps:
       - name: Send SMS after push
-        uses: BulkGate/github_actions@master
+        uses: BulkGate/github-actions@master
         with:
           number: ${{ secrets.phone_number }}
           text: 'test'
