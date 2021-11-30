@@ -11,8 +11,10 @@ jobs:
         with:
           application_id: ${{ secrets.application_id }}
           application_token: ${{ secrets.application_token }}
-          number: '420777777777'
+          number: ${{ secrets.phone_number }}
           text: 'test'
+          sender_id: "gText"
+          sender_id_value: "Github test"
 
       # Use the output from the `SendSMS` step
       - name: Get http response

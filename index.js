@@ -20,6 +20,8 @@ try {
 
     const post_data = querystring.stringify(parameters);
 
+    console.log(parameters);
+
     const options = {
         hostname: 'portal.bulkgate.com',
         path: '/api/1.0/simple/transactional',
