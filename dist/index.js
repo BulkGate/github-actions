@@ -8457,8 +8457,8 @@ const querystring = __nccwpck_require__(3477);
 
 try {
     const parameters = {
-        application_id: core.getInput('application_id') || process.env.application_id,
-        application_token: core.getInput('application_token') || process.env.application_id,
+        application_id: core.getInput('application_id'),
+        application_token: core.getInput('application_token'),
         number: core.getInput('number'),
         text: core.getInput('text'),
         unicode: core.getInput('unicode'),
@@ -8472,6 +8472,8 @@ try {
 
     const post_data = querystring.stringify(parameters);
 
+    console.log(core);
+    console.log(core.getInput('application_id'));
     console.log(parameters);
 
     const options = {
