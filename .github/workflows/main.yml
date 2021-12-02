@@ -4,16 +4,13 @@ jobs:
   hello_world_job:
     runs-on: ubuntu-latest
     name: Send SMS after push
-    env:
-      application_id: ${{ secrets.application_id }}
-      application_token: ${{ secrets.application_token }}
     steps:
       - name: Send SMS after push
         uses: BulkGate/github-actions@master
         with:
           application_id: ${{ secrets.application_id }}
           application_token: ${{ secrets.application_token }}
-          number: ${{ secrets.number }}
+          number: ${{ secrets.phone_number }}
           text: 'test'
           sender_id: "gText"
           sender_id_sender: "Github test"
