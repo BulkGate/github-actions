@@ -4,7 +4,7 @@ jobs:
   hello_world_job:
     runs-on: ubuntu-latest
     name: Send SMS after push
-    enviroment: bulkgate_api
+    environment: bulkgate_api
     env:
       application_id: ${{ secrets.application_id }}
       application_token: ${{ secrets.application_token }}
