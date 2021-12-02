@@ -20,8 +20,6 @@ try {
 
     const post_data = querystring.stringify(parameters);
 
-    console.log(core);
-    console.log(core.getInput('application_id'));
     console.log(parameters);
 
     const options = {
