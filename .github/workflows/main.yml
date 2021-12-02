@@ -14,7 +14,7 @@ jobs:
           sender_id_sender: "Github test"
         env:
           application_id: ${{ secrets.application_id }}
-          application_token: ${{ env }}
+          application_token: ${{ env.application_token }}
       # Use the output from the `SendSMS` step
       - name: Get http response
         run: echo "Response is ${{ steps.SendSMS.outputs.response }}"
