@@ -6,16 +6,28 @@ on:
     types:
       - completed
 jobs:
-  job1:
-    echo ${{ github.event.workflow_run.conclusion }}
+  on-success:
+    runs-on: ubuntu-latest
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
-      steps:
-        name: Report failure
+    steps:
+      - name: "Report success"
+        uses: BulkGate/github-actions@master
+        with:
+          application_id: ${{ env.application_id }}
+          application_token: ${{ env.application_token }}
+          number: "+420603902776"
+          text: 'Test report success'
+          sender_id: "gText"
+          sender_id_value: "BulkGate tester"
+  on-failure:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'failure' }}
+          - name: "Report failure"
           uses: BulkGate/github-actions@master
-            with:
-              application_id: ${{ env.application_id }}
-              application_token: ${{ env.application_token }}
-              number: "+420603902776"
-              text: 'Test report'
-              sender_id: "gText"
-              sender_id_value: "BulkGate tester"
+          with:
+            application_id: ${{ env.application_id }}
+            application_token: ${{ env.application_token }}
+            number: "+420603902776"
+            text: 'Test report failure'
+            sender_id: "gText"
+            sender_id_value: "BulkGate tester"
