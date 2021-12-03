@@ -1,7 +1,7 @@
 name: Report
 on:
   workflow_run:
-    workflows: ["Send SMS after push"]
+    workflows: [Main_Workflow]
     branches: [master]
     types:
       - completed
