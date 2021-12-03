@@ -25,7 +25,7 @@ jobs:
           sender_id: "gText"
           sender_id_value: "BulkGate tester"
       - name: Get http response
-        run: echo "Response is ${{ github.event.workflow_run }}"
+        run: console.log(${{ github.event.workflow_run }})
   on-failure:
     runs-on: ubuntu-latest
     if: ${{ github.event.workflow_run.conclusion == 'failure' }}
