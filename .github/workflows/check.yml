@@ -1,7 +1,7 @@
 name: Report
 on:
   workflow_run:
-    workflows: [Main_Workflow]
+    workflows: ["Main_Workflow"]
     branches: [master]
     types:
       - completed
