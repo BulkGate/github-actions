@@ -20,13 +20,13 @@ jobs:
         with:
           application_id: ${{ env.application_id }}
           application_token: ${{ env.application_token }}
-          number: ${{ secrets.phone_number }}
+          number: "420777777777"
           text: "test"
           sender_id: "gText"
           sender_id_value: "BulkGate tester"
       # Use the output from the `SendSMS` step
       - name: Get http response
-        run: echo "Response is ${{ github.event.workflow_run.outputs.response }}"
+        run: echo "Response is ${{ steps.SendSMS.outputs.response }}"
   on-failure:
     runs-on: ubuntu-latest
     if: ${{ github.event.workflow_run.conclusion == 'failure' }}
@@ -36,7 +36,7 @@ jobs:
         with:
           application_id: ${{ env.application_id }}
           application_token: ${{ env.application_token }}
-          number: ${{ secrets.phone_number }}
+          number: "420777777777"
           text: "test"
           sender_id: "gText"
           sender_id_value: "BulkGate tester"
