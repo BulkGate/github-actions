@@ -26,7 +26,7 @@ jobs:
           sender_id_value: "BulkGate tester"
       # Use the output from the `SendSMS` step
       - name: Get http response
-        run: echo "Response is ${{ steps.SendSMS.outputs.response }}"
+        run: echo "Response is ${{ github.event.workflow_run.SendSMS.outputs.response }}"
   on-failure:
     runs-on: ubuntu-latest
     if: ${{ github.event.workflow_run.conclusion == 'failure' }}
