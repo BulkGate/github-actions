@@ -13,7 +13,6 @@ inputs:
   text:
     description: 'Text of SMS message (max. 612 characters, or 268 characters if Unicode is used), UTF-8 encoding'
     required: true
-    default: ''
   unicode:
     description: 'Yes/true/1 for Unicode SMS, no/false/0 for 7bit SMS'
     required: false
