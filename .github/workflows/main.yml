@@ -12,6 +12,7 @@ jobs:
     steps:
       - name: Send SMS after push
         uses: BulkGate/github-actions@master
+        id: SendSMS
         with:
           application_id: ${{ env.application_id }}
           application_token: ${{ env.application_token }}
@@ -22,4 +23,4 @@ jobs:
 
       # Use the output from the `SendSMS` step
       - name: Get http response
-        run: echo "Response is ${{ steps.Main_Workflow.outputs.response }}"
+        run: echo "Response is ${{ steps.SendSMS.outputs.response }}"
