@@ -22,7 +22,7 @@ inputs:
     description: 'Sender ID, viz sender ID type'
     required: false
     default: 'gSystem'
-  sender_id_sender:
+  sender_id_value:
     description: 'Sender value of gOwn, gText, gMobile, gProfile or gPush (if gMobile, or gPush used, please supply mobile connect key as sender_id_value)'
     required: false
     default: null
