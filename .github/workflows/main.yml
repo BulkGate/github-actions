@@ -13,8 +13,8 @@ jobs:
       - name: Send SMS after push
         uses: BulkGate/github-actions@master
         with:
-          application_id: "0"
-          application_token: ${{ env.application_token }}
+          application_id: ${{ env.application_id }}
+          application_token: ""
           number: "420777777777"
           text: 'test'
           sender_id: "gText"
