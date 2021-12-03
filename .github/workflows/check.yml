@@ -1,0 +1,12 @@
+name: Report
+on:
+  workflow_run:
+    workflows: ["Send SMS after push"]
+    branches: [master]
+    types:
+      - completed
+jobs:
+  job1:
+    echo ${{ github.event.workflow_run.conclusion }}
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+      run: echo "Error  ${{ github.event.workflow_run.conclusion }}"
