@@ -9,6 +9,10 @@ jobs:
   on-success:
     runs-on: ubuntu-latest
     name: Report tests
+    environment: bulkgate_api
+    env:
+      application_id: ${{ secrets.application_id }}
+      application_token: ${{ secrets.application_token }}
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
       - name: "Report success"
@@ -16,7 +20,7 @@ jobs:
         with:
           application_id: ${{ env.application_id }}
           application_token: ${{ env.application_token }}
-          number: "+420603902776"
+          number: ${{ secrets.phone_number_report }}
           text: 'Test report success'
           sender_id: "gText"
           sender_id_value: "BulkGate tester"
@@ -29,7 +33,7 @@ jobs:
         with:
           application_id: ${{ env.application_id }}
           application_token: ${{ env.application_token }}
-          number: "+420603902776"
+          number: ${{ secrets.phone_number_report }}
           text: 'Test report failure'
           sender_id: "gText"
           sender_id_value: "BulkGate tester"
