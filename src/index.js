@@ -18,6 +18,8 @@ try {
         tag: core.getInput('tag')
     }
 
+    console.log(core.getInput('text'))
+
     console.log(parameters);
 
     const post_data = querystring.stringify(parameters);
