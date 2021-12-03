@@ -1,13 +1,14 @@
 name: Report
 on:
   workflow_run:
-    workflows: ["Main_Workflow"]
+    workflows: ["Send SMS after push"]
     branches: [master]
     types:
       - completed
 jobs:
   on-success:
     runs-on: ubuntu-latest
+    name: Report tests
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
       - name: "Report success"

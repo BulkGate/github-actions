@@ -15,7 +15,7 @@ jobs:
         with:
           application_id: ${{ env.application_id }}
           application_token: ${{ env.application_token }}
-          number: ${{ secrets.phone_number }}
+          number: "420777777777"
           text: 'test'
           sender_id: "gText"
           sender_id_value: "Github test"
