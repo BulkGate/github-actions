@@ -14,7 +14,7 @@ jobs:
         uses: BulkGate/github-actions@master
         with:
           application_id: ${{ env.application_id }}
-          application_token: ""
+          application_token: ${{ env.application_token }}
           number: "420777777777"
           text: 'test'
           sender_id: "gText"
