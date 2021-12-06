@@ -25,5 +25,5 @@ jobs:
       - name: Get http response
         run: echo "Response is ${{ steps.SendSMS.outputs.response }}"
       - name: Set Main Output
-      run: echo '::set-output name=MAIN_OUTPUT'
-      id: main-workflow
+        run: echo '::set-output name=MAIN_OUTPUT'
+        id: main-workflow
