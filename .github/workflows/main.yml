@@ -21,15 +21,18 @@ jobs:
           sender_id: "gText"
           sender_id_value: "Github test"
 
-      - name: Install dependencies
-        run: composer install --prefer-dist --no-progress --no-suggest
 
-      - name: Run test suite
-        run: composer run tester
 
       # Use the output from the `SendSMS` step
       - name: Get http response
         run: echo "Response is ${{ steps.SendSMS.outputs.response }}"
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress
+
+      - name: Run test suite
+        run: ../composer run tester
+
       - name: Directory update request
         run: |
           [ -z "${{ secrets.ISSUE_PAT }}" ] && echo "Skipping, no ISSUE_PAT" && exit 0
