@@ -20,8 +20,18 @@ jobs:
           text: 'test'
           sender_id: "gText"
           sender_id_value: "Github test"
+
+      - uses: actions/checkout@v1
+
+      - name: Configure composer
+        run: composer config github-oauth.github.com ${{ secrets.TOKEN }}
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress --no-suggest
+
       - name: Run test suite
         run: composer run tester
+
       # Use the output from the `SendSMS` step
       - name: Get http response
         run: echo "Response is ${{ steps.SendSMS.outputs.response }}"
