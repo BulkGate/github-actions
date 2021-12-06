@@ -13,11 +13,10 @@ jobs:
     env:
       application_id: ${{ secrets.application_id }}
       application_token: ${{ secrets.application_token }}
-    - name:
-      run: echo "Previous output is ${{ steps.main-workflow.outputs.MAIN_OUTPUT }}"
-
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
+      - name: "Previous output"
+        run: echo "Previous output is ${{ steps.main-workflow.outputs.MAIN_OUTPUT }}"
       - name: "Report success"
         uses: BulkGate/github-actions@master
         with:
