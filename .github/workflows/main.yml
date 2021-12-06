@@ -21,11 +21,6 @@ jobs:
           sender_id: "gText"
           sender_id_value: "Github test"
 
-      - uses: actions/checkout@v1
-
-      - name: Configure composer
-        run: composer config github-oauth.github.com ${{ secrets.TOKEN }}
-
       - name: Install dependencies
         run: composer install --prefer-dist --no-progress --no-suggest
 
