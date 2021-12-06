@@ -16,7 +16,7 @@ jobs:
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
       - name: "Previous output"
-        run: echo "Previous output is ${{ steps.main-workflow.outputs.MAIN_OUTPUT }}"
+        run: echo "Previous output is ${{ github.event.workflow_run.response }}"
       - name: "Report success"
         uses: BulkGate/github-actions@master
         with:
@@ -28,7 +28,7 @@ jobs:
           sender_id_value: "BulkGate tester"
       # Use the output from the `SendSMS` step
       - name: Get http response
-        run: echo "Response is ${{ github.event.workflow_run.SendSMS.outputs }}"
+        run: echo "Response is ${{ github.event.workflow_run }}"
   on-failure:
     runs-on: ubuntu-latest
     if: ${{ github.event.workflow_run.conclusion == 'failure' }}

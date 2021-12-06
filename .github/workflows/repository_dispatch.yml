@@ -1,0 +1,10 @@
+on:
+  repository_dispatch:
+    types: [test_check]
+jobs:
+  do-the-thing:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: BulkGate/github-actions@master
+      - name: Test Check
+        run: echo "Test check ${{ github.event.client_payload.repo }}"

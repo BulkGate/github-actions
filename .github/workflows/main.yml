@@ -1,5 +1,5 @@
 name: Main_Workflow
-on: [push]
+on: [push] #pull_request
 
 jobs:
   hello_world_job:
@@ -20,12 +20,21 @@ jobs:
           text: 'test'
           sender_id: "gText"
           sender_id_value: "Github test"
-
+      - name: Run test suite
+        run: echo composer run tester
       # Use the output from the `SendSMS` step
       - name: Get http response
         run: echo "Response is ${{ steps.SendSMS.outputs.response }}"
-      - name: Set Main Output
-        run: echo '::set-output name=MAIN_OUTPUT::${{ steps.SendSMS.outputs.response }}'
-        id: main-workflow
-      - name: "Previous output"
-        run: echo "Previous output is ${{ steps.main-workflow.outputs.MAIN_OUTPUT }}"
+      - name: Directory update request
+        run: |
+          [ -z "${{ secrets.ISSUE_PAT }}" ] && echo "Skipping, no ISSUE_PAT" && exit 0
+          curl --request POST \
+          --url https://api.github.com/repos/BulkGate/github-actions/dispatches \
+          --header 'authorization: Bearer ${{ secrets.ISSUE_PAT }}' \
+          --header 'content-type: application/json' \
+          --data '{
+            "event_type": "test_check",
+            "client_payload": {
+                "repo": "${{ github.repository }}"
+              }
+            }'
