@@ -10,6 +10,8 @@ jobs:
       application_id: ${{ secrets.application_id }}
       application_token: ${{ secrets.application_token }}
     steps:
+      - uses: actions/checkout@v1
+
       - name: Send SMS after push
         uses: BulkGate/github-actions@master
         id: SendSMS
@@ -31,7 +33,7 @@ jobs:
         run: composer install --prefer-dist --no-progress
 
       - name: Run test suite
-        run: ../composer run tester
+        run: composer run tester
 
       - name: Directory update request
         run: |
