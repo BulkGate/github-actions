@@ -21,7 +21,7 @@ jobs:
           sender_id: "gText"
           sender_id_value: "Github test"
       - name: Run test suite
-        run: echo composer run tester
+        run: composer run tester
       # Use the output from the `SendSMS` step
       - name: Get http response
         run: echo "Response is ${{ steps.SendSMS.outputs.response }}"
