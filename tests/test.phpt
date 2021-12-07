@@ -16,7 +16,7 @@ class TestTest extends TestCase
 {
     public function testExample(): bool
     {
-        Assert::true(true);
+        Assert::true(false);
         return true;
     }
 }
