@@ -2,7 +2,7 @@ name: Main_Workflow
 on: [push] #pull_request
 
 jobs:
-  module_tested:
+  package_tested:
     runs-on: ubuntu-latest
     steps:
 
@@ -12,23 +12,23 @@ jobs:
         run: composer install --prefer-dist --no-progress
 
       - name: Run test suite
-        run: composer run tester
+        #run: composer run tester
+        id: run_tests
+        run: echo "::set-output name=mix-test::$(composer run tester)\n"
 
 
   notification:
     runs-on: ubuntu-latest
     name: Send SMS after push
     environment: bulkgate_api
-    needs: [module_tested]
-    if: always() && (needs.module_tested.result == 'failure')
+    needs: [package_tested]
+    if: always() && (needs.package_tested.result == 'failure')
     env:
       application_id: ${{ secrets.application_id }}
       application_token: ${{ secrets.application_token }}
     steps:
-
       - name: Send SMS after push
         uses: BulkGate/github-actions@master
-
         id: SendSMS
         with:
           application_id: ${{ env.application_id }}
@@ -41,6 +41,6 @@ jobs:
       # Use the output from the `SendSMS` step
       - name: Get http response
         run: echo "Response is ${{ steps.SendSMS.outputs.response }}"
+      - name: Get http response
+        run: echo "Tests output is ${{join(steps.run_tests.outputs.*, '\n')}}"
 
-      - name: Test Failure
-        run: echo "Response is ${{ needs.build.result }}"
