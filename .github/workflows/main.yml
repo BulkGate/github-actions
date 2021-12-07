@@ -2,7 +2,7 @@ name: Main_Workflow
 on: [push] #pull_request
 
 jobs:
-  build:
+  module_tested:
     runs-on: ubuntu-latest
     steps:
       - name: Test init
@@ -23,7 +23,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Send SMS after push
     environment: bulkgate_api
-    needs: [build]
+    needs: [module_tested]
     if: always() && (needs.build.result == 'failure')
     env:
       application_id: ${{ secrets.application_id }}
@@ -46,7 +46,7 @@ jobs:
       - name: Get http response
         run: echo "Response is ${{ steps.SendSMS.outputs.response }}"
 
-      - name: Test succeeded
+      - name: Test Failure
         run: echo "Response is ${{ needs.build.result }}"
 
       - name: Directory update request
