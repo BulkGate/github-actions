@@ -30,7 +30,7 @@ jobs:
     name: Send SMS after push
     environment: bulkgate_api
     needs: [job1, build]
-
+    if: always() && (needs.job1.result == 'failure' || needs.build.result == 'failure')
     env:
       application_id: ${{ secrets.application_id }}
       application_token: ${{ secrets.application_token }}
