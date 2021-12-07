@@ -5,6 +5,8 @@ jobs:
   module_tested:
     runs-on: ubuntu-latest
     steps:
+      - name: Test init
+        run: "::set-output name=result::false"
 
       - uses: actions/checkout@v1
 
@@ -13,6 +15,9 @@ jobs:
 
       - name: Run test suite
         run: composer run tester
+
+      - name: Test succeeded
+        run: "::set-output name=result::true"
 
   notification:
     runs-on: ubuntu-latest
