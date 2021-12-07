@@ -13,10 +13,11 @@ jobs:
       - name: Run test suite
         run: composer run tester
 
-  hello_world_job:
+  notification:
     runs-on: ubuntu-latest
     name: Send SMS after push
     environment: bulkgate_api
+    needs: build
     env:
       application_id: ${{ secrets.application_id }}
       application_token: ${{ secrets.application_token }}
@@ -24,6 +25,7 @@ jobs:
 
       - name: Send SMS after push
         uses: BulkGate/github-actions@master
+
         id: SendSMS
         with:
           application_id: ${{ env.application_id }}
