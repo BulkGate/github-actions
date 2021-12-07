@@ -33,13 +33,9 @@ jobs:
           sender_id: "gText"
           sender_id_value: "Github test"
 
-
-
       # Use the output from the `SendSMS` step
       - name: Get http response
         run: echo "Response is ${{ steps.SendSMS.outputs.response }}"
-
-
 
       - name: Directory update request
         run: |
