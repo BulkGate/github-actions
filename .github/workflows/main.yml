@@ -5,6 +5,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Test init
+        run: "::set-output name=success::false"
+
       - uses: actions/checkout@v1
 
       - name: Install dependencies
@@ -13,11 +16,15 @@ jobs:
       - name: Run test suite
         run: composer run tester
 
+      - name: Test succeeded
+        run: "::set-output name=result::true"
+
   notification:
     runs-on: ubuntu-latest
     name: Send SMS after push
     environment: bulkgate_api
-    
+    needs: [build]
+
     env:
       application_id: ${{ secrets.application_id }}
       application_token: ${{ secrets.application_token }}
@@ -38,6 +45,9 @@ jobs:
       # Use the output from the `SendSMS` step
       - name: Get http response
         run: echo "Response is ${{ steps.SendSMS.outputs.response }}"
+
+      - name: Test succeeded
+        run: echo "Response is ${{ needs.build.result }}"
 
       - name: Directory update request
         run: |
