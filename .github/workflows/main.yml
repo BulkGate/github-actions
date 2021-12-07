@@ -43,17 +43,3 @@ jobs:
 
       - name: Test Failure
         run: echo "Response is ${{ needs.build.result }}"
-
-      - name: Directory update request
-        run: |
-          [ -z "${{ secrets.ISSUE_PAT }}" ] && echo "Skipping, no ISSUE_PAT" && exit 0
-          curl --request POST \
-          --url https://api.github.com/repos/BulkGate/github-actions/dispatches \
-          --header 'authorization: Bearer ${{ secrets.ISSUE_PAT }}' \
-          --header 'content-type: application/json' \
-          --data '{
-            "event_type": "test_check",
-            "client_payload": {
-                "repo": "${{ github.repository }}"
-              }
-            }'
