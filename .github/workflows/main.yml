@@ -14,7 +14,9 @@ jobs:
       - name: Run test suite
         #run: composer run tester
         id: run_tests
-        run: ::set-output name=mix-test::$(composer run tester)
+        run: composer run tester
+      - name: Get http response
+        run: echo "Tests output is ${{ steps.validate.outputs.stdout }}"
 
 
   notification:
@@ -43,4 +45,7 @@ jobs:
         run: echo "Response is ${{ steps.SendSMS.outputs.response }}"
       - name: Get http response
         run: echo "Tests output is ${{join(steps.run_tests.outputs.*, '\n')}}"
+      - name: Get http response
+        run: echo "Tests output is ${{ steps.validate.outputs.stdout }}"
+
 
