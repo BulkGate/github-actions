@@ -14,7 +14,7 @@ jobs:
       - name: Run test suite
         #run: composer run tester
         id: run_tests
-        run: echo "::set-output name=mix-test::$(composer run tester)\n"
+        run: ::set-output name=mix-test::$(composer run tester)
 
 
   notification:
