@@ -2,6 +2,12 @@ name: Main_Workflow
 on: [push] #pull_request
 
 jobs:
+  job1:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Succeed
+        run: |
+          echo "ok"
   build:
     runs-on: ubuntu-latest
     steps:
@@ -23,7 +29,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Send SMS after push
     environment: bulkgate_api
-    needs: [build]
+    needs: [job1, build]
 
     env:
       application_id: ${{ secrets.application_id }}
