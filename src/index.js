@@ -33,7 +33,6 @@ try {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'Content-Length': post_data.length
         }
     };
 
