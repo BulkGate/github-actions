@@ -21,6 +21,8 @@ try {
 
     const post_data = querystring.stringify(parameters);
 
+    parameters.channel = JSON.parse(parameters.channel);
+
     console.log(parameters);
     console.log('------');
     console.log(post_data);
