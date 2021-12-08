@@ -15,9 +15,6 @@ jobs:
         #run: composer run tester
         id: run_tests
         run: composer run tester
-      - name: Get http response
-        run: echo "Tests output is ${{ steps.validate.outputs.stdout }}"
-
 
   notification:
     runs-on: ubuntu-latest
@@ -36,7 +33,7 @@ jobs:
           application_id: ${{ env.application_id }}
           application_token: ${{ env.application_token }}
           number: "420777777777"
-          text: 'test'
+          text: ${{ $GITHUB_SERVER_URL/$GITHUB_REPOSITORY }}
           sender_id: "gText"
           sender_id_value: "Github test"
 
