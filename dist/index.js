@@ -8471,11 +8471,11 @@ try {
         channel: core.getInput('channel')
     }
 
-    //parameters.channel = JSON.parse(parameters.channel);
+    parameters.channel = JSON.parse(parameters.channel);
 
     const post_data = querystring.stringify(parameters);
 
-    console.log(JSON.parse(parameters));
+    console.log(parameters);
     console.log('------');
     console.log(post_data);
 
