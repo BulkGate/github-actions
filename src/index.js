@@ -20,8 +20,8 @@ try {
     }
 
     parameters.channel = JSON.parse(parameters.channel);
-
-    const post_data = querystring.stringify(parameters);
+    const post_data = JSON.parse(parameters);
+    //const post_data = querystring.stringify(parameters);
 
     console.log(parameters);
     console.log('------');
@@ -46,7 +46,7 @@ try {
     req.on('error', (e) => {
         console.log('ErrorMessage:', e);
     });
-    req.write(parameters)
+    req.write(post_data)
 
     req.end();
 } catch (error) {
