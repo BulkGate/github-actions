@@ -19,10 +19,10 @@ try {
         channel: core.getInput('channel')
     }
 
-    const post_data = querystring.stringify(parameters);
-
     parameters.channel = JSON.parse(parameters.channel);
 
+    const post_data = querystring.stringify(parameters);
+    
     console.log(parameters);
     console.log('------');
     console.log(post_data);
