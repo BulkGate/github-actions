@@ -2,11 +2,17 @@
 
 Send SMS via Github actions
 
+## Setup
+
+- Go to your repository settings. Click secrets and set your application_id and application_token as secrets.
+
+- Set inputs in your workflow based on one of these uses cases.
+
 ## SMS notification workflow
 
-- Go to your repository settings. Click secrets and set your application_id and application_token as secrets
+Workflow allowing to connect github event as push, pull request and many others to BulkGate API
 
-- Set inputs in your workflow
+
 
 ```
 jobs:
@@ -68,6 +74,8 @@ jobs:
 
 ## After testing notification workflow
 
+Workflow consisting of two jobs latter being dependand on the first one. When first job fails as a result of faulty nette test, notification SMS will be send out to specified phone number. Second job wont trigger if first is successful.
+
 ```
 jobs:
   package_tested:
@@ -109,6 +117,9 @@ jobs:
 ```
 
 ## Alternative after testing notification workflow
+
+Alternative workflow consisting of two separate workflow files. After first one is resolved second will send SMS based on the first ones success, or failure.
+Second workflow will trigger regardless on result of the first workflow, but could send different SMS notification.
 
 ### main.yml
 ```
