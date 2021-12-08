@@ -37,7 +37,7 @@ inputs:
   channel:
     description: 'Alternative channels'
     required: false
-    default: ''
+    default: '{}'
   duplicates_check:
     description: 'Select on to prevent sending duplicate messages to the same phone number. Messages with the same text sent to the same number will be removed if there is a time interval shorter than 5 minutes. If off no duplicates will be removed.'
     required: false
