@@ -8471,13 +8471,9 @@ try {
         channel: core.getInput('channel')
     }
 
-    console.log(parameters);
     parameters.channel = JSON.parse(parameters.channel);
-    console.log(parameters);
-    const post_data = JSON.stringify(parameters);
-    //const post_data = querystring.stringify(parameters);
 
-    console.log(post_data);
+    const post_data = JSON.stringify(parameters);
 
     const options = {
         hostname: 'portal.bulkgate.com',
