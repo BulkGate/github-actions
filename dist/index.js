@@ -8484,7 +8484,7 @@ try {
         path: '/api/2.0/advanced/transactional',
         method: 'POST',
         headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
+            'Content-Type': 'application/json',
             'Content-Length': post_data.length
         }
     };
@@ -8498,7 +8498,7 @@ try {
     req.on('error', (e) => {
         console.log('ErrorMessage:', e);
     });
-    req.write(post_data)
+    req.write(parameters)
 
     req.end();
 } catch (error) {
