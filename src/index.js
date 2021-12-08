@@ -22,6 +22,7 @@ try {
     const post_data = querystring.stringify(parameters);
 
     console.log(parameters);
+    console.log('------');
     console.log(post_data);
 
     const options = {

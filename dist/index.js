@@ -8467,11 +8467,15 @@ try {
         country: core.getInput('country'),
         schedule: core.getInput('schedule'),
         duplicates_check: core.getInput('duplicates_check'),
-        tag: core.getInput('tag')
+        tag: core.getInput('tag'),
+        channel: core.getInput('channel')
     }
 
-
     const post_data = querystring.stringify(parameters);
+
+    console.log(parameters);
+    console.log('------');
+    console.log(post_data);
 
     const options = {
         hostname: 'portal.bulkgate.com',
