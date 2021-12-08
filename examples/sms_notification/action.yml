@@ -33,6 +33,10 @@ inputs:
     description: 'Schedule the sending time and date in unix timestamp, or ISO 8601.'
     required: false
     default: 'Now'
+  channel:
+    description: 'Alternative channels'
+    required: false
+    default: ''
   duplicates_check:
     description: 'Select on to prevent sending duplicate messages to the same phone number. Messages with the same text sent to the same number will be removed if there is a time interval shorter than 5 minutes. If off no duplicates will be removed.'
     required: false
