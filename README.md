@@ -2,28 +2,35 @@
 
 Send SMS via Github actions
 
-## Workflow
+## SMS notification workflow
 
 - Go to your repository settings. Click secrets and set your application_id and application_token as secrets
 
 - Set inputs in your workflow
 
 ```
-name: Send SMS after push
-environment: bulkgate_api
-env:
-  application_id: ${{ secrets.application_id }}
-  application_token: ${{ secrets.application_token }}
-steps:
-  - name: Send SMS after push
-    uses: BulkGate/github-actions@master
-    with:
-      application_id: ${{ env.application_id }}
-      application_token: ${{ env.application_token }}
-      number: ${{ secrets.phone_number }}
-      text: 'test'
-      sender_id: "gText"
-      sender_id_sender: "Github test"
+jobs:
+  notification:
+    runs-on: ubuntu-latest
+    name: Send SMS after push
+    environment: bulkgate_api
+    env:
+      application_id: ${{ secrets.application_id }}
+      application_token: ${{ secrets.application_token }}
+    steps:
+      - name: Send SMS after push
+        uses: BulkGate/github-actions@master
+        id: SendSMS
+        with:
+          application_id: ${{ env.application_id }}
+          application_token: ${{ env.application_token }}
+          number: "420777777777"
+          text: "test"
+          sender_id: "gText"
+          sender_id_value: "Github test"
+
+      - name: Get http response
+        run: echo "Response is ${{ steps.SendSMS.outputs.response }}"
 ```
 
 
@@ -58,3 +65,111 @@ steps:
 |`gProfile`|[BulkGate Profile ID](sender-id-profile.md)|
 | `<int>` |BulkGate Profile ID| 
 
+
+## After testing notification workflow
+
+```
+jobs:
+  package_tested:
+    runs-on: ubuntu-latest
+    steps:
+
+      - uses: actions/checkout@v1
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress
+
+      - name: Run test suite
+        id: run_tests
+        run: composer run tester
+
+  notification:
+    runs-on: ubuntu-latest
+    name: Send SMS after push
+    environment: bulkgate_api
+    needs: [package_tested]
+    if: always() && (needs.package_tested.result == 'failure')
+    env:
+      application_id: ${{ secrets.application_id }}
+      application_token: ${{ secrets.application_token }}
+    steps:
+      - name: Send SMS after push
+        uses: BulkGate/github-actions@master
+        id: SendSMS
+        with:
+          application_id: ${{ env.application_id }}
+          application_token: ${{ env.application_token }}
+          number: "420777777777"
+          text: ${{ github.server_url }}/${{ github.repository }}/actions
+          sender_id: "gText"
+          sender_id_value: "Github test"
+
+      - name: Get http response
+        run: echo "Response is ${{ steps.SendSMS.outputs.response }}"
+```
+
+## Alternative after testing notification workflow
+
+### main.yml
+```
+name: Main_Workflow
+on: [push]
+
+jobs:
+  package_tested:
+    runs-on: ubuntu-latest
+    steps:
+
+      - uses: actions/checkout@v1
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress
+
+      - name: Run test suite
+        id: run_tests
+        run: composer run tester
+```
+
+### report.yml
+```
+name: Report
+on:
+  workflow_run:
+    workflows: ["Main_Workflow"]
+    branches: [master]
+    types:
+      - completed
+jobs:
+  on-success:
+    runs-on: ubuntu-latest
+    name: Report tests
+    environment: bulkgate_api
+    env:
+      application_id: ${{ secrets.application_id }}
+      application_token: ${{ secrets.application_token }}
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    steps:
+      - name: "Report success"
+        uses: BulkGate/github-actions@master
+        with:
+          application_id: ${{ env.application_id }}
+          application_token: ${{ env.application_token }}
+          number: "420777777777"
+          text: "test"
+          sender_id: "gText"
+          sender_id_value: "BulkGate tester"
+
+  on-failure:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'failure' }}
+    steps:
+      - name: "Report failure"
+        uses: BulkGate/github-actions@master
+        with:
+          application_id: ${{ env.application_id }}
+          application_token: ${{ env.application_token }}
+          number: "420777777777"
+          text: "test"
+          sender_id: "gText"
+          sender_id_value: "BulkGate tester"
+```
