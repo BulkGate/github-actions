@@ -33,7 +33,7 @@ jobs:
           application_id: ${{ env.application_id }}
           application_token: ${{ env.application_token }}
           number: "420777777777"
-          text: ${{ $GITHUB_SERVER_URL/$GITHUB_REPOSITORY }}
+          text: ${{ $GITHUB_SERVER_URL }}/${{ GITHUB_REPOSITORY }}
           sender_id: "gText"
           sender_id_value: "Github test"
 
