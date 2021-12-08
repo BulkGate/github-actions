@@ -1,0 +1,16 @@
+name: Main_Workflow
+on: [push]
+
+jobs:
+  package_tested:
+    runs-on: ubuntu-latest
+    steps:
+
+      - uses: actions/checkout@v1
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress
+
+      - name: Run test suite
+        id: run_tests
+        run: composer run tester
