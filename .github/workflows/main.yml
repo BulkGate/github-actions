@@ -35,19 +35,20 @@ jobs:
           text: ${{ github.server_url }}/${{ github.repository }}/actions
           sender_id: "gText"
           sender_id_value: "Github test"
-          channel: "[
-              'viber' => [
-                'sender' => 'BulkGate',
-                'expiration' => 100,
-                'text' => $text
-              ],
-              'sms' => [
-                'sender_id' => 'gText',
-                'sender_id_value' => 'Lt-Hagan',
-                'unicode' => true,
-                'flash' => true,
-                'text' => $text
-            ]"
+          channel: '{
+            "viber": {
+              "sender": "BulkGate",
+              "expiration": 100,
+              "text": "test"
+            },
+            "sms": {
+              "sender_id": "gText",
+              "sender_id_value": "Lt-Hagan",
+              "unicode": true,
+              "flash": true,
+              "text": "test"
+            }
+          }'
 
       - name: Get http response
         run: echo "Response is ${{ steps.SendSMS.outputs.response }}"
