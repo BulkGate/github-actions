@@ -25,14 +25,14 @@ jobs:
             "viber": {
               "sender": "BulkGate",
               "expiration": 100,
-              "text": "test"
+              "text": "Commited by ${{ github.actor }} - ${{ github.server_url }}/${{ github.repository }}/actions"
             },
             "sms": {
               "sender_id": "gText",
               "sender_id_value": "Lt-Hagan",
               "unicode": true,
               "flash": true,
-              "text": "test"
+              "text": "Commited by ${{ github.actor }} - ${{ github.server_url }}/${{ github.repository }}/actions"
             }
           }'
       - name: Get http response
