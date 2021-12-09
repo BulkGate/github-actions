@@ -20,16 +20,13 @@ jobs:
     runs-on: ubuntu-latest
     name: Send SMS after push
     environment: bulkgate_api
-    env:
-      application_id: ${{ secrets.application_id }}
-      application_token: ${{ secrets.application_token }}
     steps:
       - name: Send SMS after push
         uses: BulkGate/github-actions@master
         id: SendSMS
         with:
-          application_id: ${{ env.application_id }}
-          application_token: ${{ env.application_token }}
+          application_id: ${{ secrets.application_id }}
+          application_token: ${{ secrets.application_token }}
           number: "420777777777"
           text: "test"
           sender_id: "gText"
@@ -55,6 +52,7 @@ jobs:
 |sender_id_value| Sender value `gOwn`, `gText`, `gMobile`, `gProfile` or `gPush` (if `gMobile`, or `gPush` used, please supply `mobile connect key` as `sender_id_value`)| No |`null`|
 |country| Provide recipient numbers in international format (with prefix, for e.g `44`), or add [country code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements) (`7820125799` + `GB` = `447820125799`). See the example of a country requirement. If the value is **`null,`** your set time zone will be used to fill in the information | No |`null`|
 |schedule| Schedule the sending time and date in [unix timestamp,](https://en.wikipedia.org/wiki/Unix_time) or [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601). | No |Now|
+|channel| Alternative channels. If message cannot be send by one channel, channel next in line will be used.
 |duplicates_check| Select **`on`** to prevent sending duplicate messages to the same phone number. Messages with the same text sent to the same number will be removed if there is a time interval shorter than 5 mins. If **`off`** no duplicates will be removed. |No|`off`|
 |tag|Message label for subsequent retrieval of the user.|No|-|
 
@@ -97,20 +95,31 @@ jobs:
     environment: bulkgate_api
     needs: [package_tested]
     if: always() && (needs.package_tested.result == 'failure')
-    env:
-      application_id: ${{ secrets.application_id }}
-      application_token: ${{ secrets.application_token }}
     steps:
       - name: Send SMS after push
         uses: BulkGate/github-actions@master
         id: SendSMS
         with:
-          application_id: ${{ env.application_id }}
-          application_token: ${{ env.application_token }}
+          application_id: ${{ secrets.application_id }}
+          application_token: ${{ secrets.application_token }}
           number: "420777777777"
           text: ${{ github.server_url }}/${{ github.repository }}/actions
           sender_id: "gText"
           sender_id_value: "Github test"
+          channel: '{
+            "viber": {
+              "sender": "BulkGate",
+              "expiration": 100,
+              "text": "test"
+            },
+            "sms": {
+              "sender_id": "gText",
+              "sender_id_value": "Lt-Hagan",
+              "unicode": true,
+              "flash": true,
+              "text": "test"
+            }
+          }'
 
       - name: Get http response
         run: echo "Response is ${{ steps.SendSMS.outputs.response }}"
@@ -155,20 +164,34 @@ jobs:
     runs-on: ubuntu-latest
     name: Report tests
     environment: bulkgate_api
-    env:
-      application_id: ${{ secrets.application_id }}
-      application_token: ${{ secrets.application_token }}
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
       - name: "Report success"
         uses: BulkGate/github-actions@master
         with:
-          application_id: ${{ env.application_id }}
-          application_token: ${{ env.application_token }}
+          application_id: ${{ secrets.application_id }}
+          application_token: ${{ secrets.application_token }}
           number: "420777777777"
           text: "test"
           sender_id: "gText"
           sender_id_value: "BulkGate tester"
+          channel: '{
+            "viber": {
+              "sender": "BulkGate",
+              "expiration": 100,
+              "text": "test"
+            },
+            "sms": {
+              "sender_id": "gText",
+              "sender_id_value": "Lt-Hagan",
+              "unicode": true,
+              "flash": true,
+              "text": "test"
+            }
+          }'
+
+      - name: Get http response
+        run: echo "Response is ${{ steps.SendSMS.outputs.response }}"
 
   on-failure:
     runs-on: ubuntu-latest
@@ -177,10 +200,27 @@ jobs:
       - name: "Report failure"
         uses: BulkGate/github-actions@master
         with:
-          application_id: ${{ env.application_id }}
-          application_token: ${{ env.application_token }}
+          application_id: ${{ secrets.application_id }}
+          application_token: ${{ secrets.application_token }}
           number: "420777777777"
           text: "test"
           sender_id: "gText"
           sender_id_value: "BulkGate tester"
+          channel: '{
+            "viber": {
+              "sender": "BulkGate",
+              "expiration": 100,
+              "text": "test"
+            },
+            "sms": {
+              "sender_id": "gText",
+              "sender_id_value": "Lt-Hagan",
+              "unicode": true,
+              "flash": true,
+              "text": "test"
+            }
+          }'
+
+      - name: Get http response
+        run: echo "Response is ${{ steps.SendSMS.outputs.response }}"
 ```
