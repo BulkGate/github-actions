@@ -29,21 +29,21 @@ jobs:
           application_id: ${{ secrets.application_id }}
           application_token: ${{ secrets.application_token }}
           number: "420777777777"
-          text: Commited ${{ github.actor }} - ${{ github.server_url }}/${{ github.repository }}/actions
+          text: Commited by ${{ github.actor }} - ${{ github.server_url }}/${{ github.repository }}/actions
           sender_id: "gText"
           sender_id_value: "Github test"
           channel: '{
             "viber": {
               "sender": "BulkGate",
               "expiration": 100,
-              "text": " ${{ github.actor }} "
+              "text": "Commited by ${{ github.actor }} - ${{ github.server_url }}/${{ github.repository }}/actions"
             },
             "sms": {
               "sender_id": "gText",
               "sender_id_value": "Lt-Hagan",
               "unicode": true,
               "flash": true,
-              "text": "test"
+              "text": "Commited by ${{ github.actor }} - ${{ github.server_url }}/${{ github.repository }}/actions"
             }
           }'
 
