@@ -35,6 +35,8 @@ jobs:
               "text": "test"
             }
           }'
+      - name: Get http response
+        run: echo "Response is ${{ steps.SendSMS.outputs.response }}"
 
   on-failure:
     runs-on: ubuntu-latest
@@ -63,3 +65,5 @@ jobs:
               "text": "test"
             }
           }'
+      - name: Get http response
+        run: echo "Response is ${{ steps.SendSMS.outputs.response }}"
