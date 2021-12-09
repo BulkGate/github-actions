@@ -44,10 +44,10 @@ jobs:
 
 | PARAMETER NAME | VALUE | MANDATORY | DEFAULT VALUE |
 |:--- |:--- |:--- |:--- |
-|application_id| [Application ID](api-administration.md#what-is-application-id) |**Yes**|-| 
-|application_token| [Application token](api-tokens.md#what-is-an-api-token)	|**Yes**|-|
+|application_id| [Application ID](https://help.bulkgate.com/docs/en/api-administration.html#what-is-application-id) |**Yes**|-| 
+|application_token| [Application token](https://help.bulkgate.com/docs/en/api-tokens.html#what-is-an-api-token)	|**Yes**|-|
 |number| Recipient number	|**Yes** or `admin`|-|
-|admin| Number of BulkGate administrator receiving notification. [More info](http-advanced-transactional-admin.md) |**Yes** or `number`|-|
+|admin| Number of BulkGate administrator receiving notification. [More info](https://help.bulkgate.com/docs/en/http-advanced-transactional-admin.html) |**Yes** or `number`|-|
 |text| Text of the SMS message (max. 612 characters, or 268 characters, if Unicode is activated), UTF-8 encoding. It is possible to add variables to the template from the `variables` array (another parameter) `Hello <first_name> <last_name> ....`	|**Yes**|-|
 |variables| Associative array to add variables to text, for e.g.: `{"first_name": "John", "last_name": "Doe"}`| No | `[]` |
 |unicode	|`Yes`/`true`/`1` for Unicode SMS, `no`/`false`/`0` for 7bit SMS|No|`false`|
@@ -68,7 +68,7 @@ jobs:
 |`gMobile`|Mobile Connect - Sends SMS message through Mobile Connect app|
 |`gPush`|Mobile Connect push - Sends a notification to the Mobile Connect app|
 |`gOwn` |Own number (requires number verification)| 
-|`gProfile`|[BulkGate Profile ID](sender-id-profile.md)|
+|`gProfile`|[BulkGate Profile ID](https://help.bulkgate.com/docs/en/sender-id-profile.html)|
 | `<int>` |BulkGate Profile ID| 
 
 
