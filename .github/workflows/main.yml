@@ -36,7 +36,7 @@ jobs:
             "viber": {
               "sender": "BulkGate",
               "expiration": 100,
-              "text": "' ${{ github.server_url }}/${{ github.repository }}/actions '"
+              "text": " ${{ github.actor }} "
             },
             "sms": {
               "sender_id": "gText",
