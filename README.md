@@ -55,6 +55,7 @@ jobs:
 |sender_id_value| Sender value `gOwn`, `gText`, `gMobile`, `gProfile` or `gPush` (if `gMobile`, or `gPush` used, please supply `mobile connect key` as `sender_id_value`)| No |`null`|
 |country| Provide recipient numbers in international format (with prefix, for e.g `44`), or add [country code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements) (`7820125799` + `GB` = `447820125799`). See the example of a country requirement. If the value is **`null,`** your set time zone will be used to fill in the information | No |`null`|
 |schedule| Schedule the sending time and date in [unix timestamp,](https://en.wikipedia.org/wiki/Unix_time) or [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601). | No |Now|
+|channel| Alternative channels. If message cannot be send by one channel, channel next in line will be used.
 |duplicates_check| Select **`on`** to prevent sending duplicate messages to the same phone number. Messages with the same text sent to the same number will be removed if there is a time interval shorter than 5 mins. If **`off`** no duplicates will be removed. |No|`off`|
 |tag|Message label for subsequent retrieval of the user.|No|-|
 
