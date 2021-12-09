@@ -21,16 +21,13 @@ jobs:
     environment: bulkgate_api
     needs: [package_tested]
     if: always() && (needs.package_tested.result == 'failure')
-    env:
-      application_id: ${{ secrets.application_id }}
-      application_token: ${{ secrets.application_token }}
     steps:
       - name: Send SMS after push
         uses: BulkGate/github-actions@master
         id: SendSMS
         with:
-          application_id: ${{ env.application_id }}
-          application_token: ${{ env.application_token }}
+          application_id: ${{ secrets.application_id }}
+          application_token: ${{ secrets.application_token }}
           number: "420777777777"
           text: ${{ github.server_url }}/${{ github.repository }}/actions
           sender_id: "gText"
