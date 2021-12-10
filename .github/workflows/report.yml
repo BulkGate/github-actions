@@ -25,14 +25,14 @@ jobs:
             "viber": {
               "sender": "BulkGate",
               "expiration": 100,
-              "text": "Commited by ${{ github.actor }} - ${{ github.server_url }}/${{ github.repository }}/actions"
+              "text": "Committed by ${{ github.actor }} - ${{ github.server_url }}/${{ github.repository }}/actions"
             },
             "sms": {
               "sender_id": "gText",
               "sender_id_value": "Lt-Hagan",
               "unicode": true,
               "flash": true,
-              "text": "Commited by ${{ github.actor }} - ${{ github.server_url }}/${{ github.repository }}/actions"
+              "text": "Committed by ${{ github.actor }} - ${{ github.server_url }}/${{ github.repository }}/actions"
             }
           }'
       - name: Get http response
@@ -55,14 +55,14 @@ jobs:
             "viber": {
               "sender": "BulkGate",
               "expiration": 100,
-              "text": "Commited by ${{ github.actor }} - ${{ github.server_url }}/${{ github.repository }}/actions"
+              "text": "Committed by ${{ github.actor }} - ${{ github.server_url }}/${{ github.repository }}/actions"
             },
             "sms": {
               "sender_id": "gText",
               "sender_id_value": "Lt-Hagan",
               "unicode": true,
               "flash": true,
-              "text": "Commited by ${{ github.actor }} - ${{ github.server_url }}/${{ github.repository }}/actions"
+              "text": "Committed by ${{ github.actor }} - ${{ github.server_url }}/${{ github.repository }}/actions"
             }
           }'
       - name: Get http response
